@@ -180,7 +180,7 @@ def save_consolidated_to_db():
 
                                 print("[INFO] Inserting " + society_name + " into database...")
 
-                                society_name = society_name.replace("'", "''")
+                                society_name = society_name.replace("'", "")
 
                                 insert_data_command = "INSERT INTO consolidated_society_data (dt, name, votes) VALUES ('%s', '%s', %d);" % (date_generated, society_name, item["Voters"])
 
