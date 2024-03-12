@@ -149,7 +149,7 @@ def save_consolidated_to_db():
     group_names = list(set(group_names))
 
     # create a new table for the consolidated society data, each column should be a society, with rows for each vote count
-    cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='consolidated_society_data'")
+    cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='consolidated_society_data';")
 
     if cur.fetchone() is None:
         print("[ERROR] Table consolidated_society_data does not exist. Creating it now...")
@@ -157,7 +157,7 @@ def save_consolidated_to_db():
                                 dt TEXT NOT NULL, \
                                 name TEXT NOT NULL,\
                                 votes INTEGER NOT NULL,\
-                                PRIMARY KEY (dt, name))"
+                                PRIMARY KEY (dt, name));"
         cur.execute(create_table_command)
 
     # now we have a table with columns for each society, we can add the data
@@ -182,7 +182,7 @@ def save_consolidated_to_db():
 
                                 society_name = society_name.replace("'", "''")
 
-                                insert_data_command = "INSERT INTO consolidated_society_data (dt, name, votes) VALUES ('%s', '%s', %d)" % (date_generated, society_name, item["Voters"])
+                                insert_data_command = "INSERT INTO consolidated_society_data (dt, name, votes) VALUES ('%s', '%s', %d);" % (date_generated, society_name, item["Voters"])
 
                                 
                                 cur.execute(insert_data_command)
